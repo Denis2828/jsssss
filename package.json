@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Denis2828/jsssss/issues"
   },
-  "homepage": "https://github.com/Denis2828/jsssss#readme"
+  "homepage": "https://github.com/Denis2828/jsssss#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.40.0"
+  }
 }
