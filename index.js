@@ -1,4 +1,5 @@
 const TOKEN = process.env.TELEGRAM_TOKEN || '1087438094:AAE2F8FdURjBJV9PYCCtsfmnUHEn4ldqlVc';
+var fs = require("fs");
 const TelegramBot = require('node-telegram-bot-api');
 const options = {
   webHook: {
@@ -25,12 +26,17 @@ bot.on('callback_query', function onCallbackQuery(callbackQuery) {
     message_id: msg.message_id,
   };
   if (action === '1') {
-    bot.sendMessage(opts.chat_id, "Игра получилась отличная. Но можно ещё добавить возможность играть по сети)");
+    bot.sendMessage(opts.chat_id, "Название игры. Я ставлю 8 баллов из 10. Игра получилась отличная. Но можно ещё добавить возможность играть по сети)");
   }
 });
 
+var comment = "";
+
 bot.on('message', function onMessage(msg) {
 	if(msg.text == "/start"){
-		bot.sendMessage(msg.chat.id, "Привет. Я робот компании Denisca28. Я создан для того что пользователи могли оставить отзыв. Но не пробуте задать вопрос здесь, так как на него никто не ответит). Вы уже можете оставить отзыв и если хотите написать что можно улучшить в каком либо продукте). Удачи", option);
+		bot.sendMessage(msg.chat.id, "Привет. Я робот компании Denisca28. Я создан для того что пользователи могли оставить отзыв и оценить продукт по 10 балиной системе. Но не пробуте задать вопрос здесь, так как на него никто не ответит). Вы уже можете оставить отзыв и если хотите написать что можно улучшить в каком либо продукте). Удачи", option);
 	}
+
+	fs.appendFile("./comments.js", msg);
+	bot.sendMessage(msg.chat.id, "Спасибо за отзыв)");
 });
