@@ -31,5 +31,5 @@ bot.setWebHook(`${url}/bot${TOKEN}`);
 
 // Just to ping!
 bot.on('message', function onMessage(msg) {
-  bot.sendMessage(msg.chat.id, 'Ты ввел' + msg.text);
+  bot.sendMessage(msg.chat.id, 'Ты ввел: ' + msg.text);
 });
