@@ -11,10 +11,6 @@ bot.setWebHook(`${url}/bot${TOKEN}`);
 
 var USER_NAME = "";
 
-function send(message){
-	bot.sendMessage(msg.chat.id, message);
-}
-
 var commands = [
 	{"input": "Привет", "output": "Привет, друг)"},
 	{"input": "Пока", "output": "До встречи!"},
@@ -26,7 +22,7 @@ var commands = [
 bot.on('message', function onMessage(msg) {
 	for(var i = 0;i<commands.length;i++){
 		if(msg.text == commands[i].input){
-			send(commands[i].output);
+			bot.sendMessage(msg.chat.id, commands[i].output);
 		}
 	}
 });
