@@ -111,7 +111,7 @@ var data = [
 ]; //DataBase;
 
 bot.on('message', function onMessage(msg) {
-	for (var i = 0; i < inp.length; i++) {
+	for (var i = 0; i < msg.length; i++) {
 		for (var a = 0; a < data.length; a++) {
 			if (data[a].ins == msg[i]) {
 				out += data[a].outs;
