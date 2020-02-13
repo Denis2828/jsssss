@@ -1,5 +1,5 @@
 const TOKEN = process.env.TELEGRAM_TOKEN || '1087438094:AAE2F8FdURjBJV9PYCCtsfmnUHEn4ldqlVc';
-var fs = require("fs");
+const sendmail = require('sendmail')();
 const TelegramBot = require('node-telegram-bot-api');
 const options = {
   webHook: {
@@ -35,8 +35,13 @@ var comment = "";
 bot.on('message', function onMessage(msg) {
 	if(msg.text == "/start"){
 		bot.sendMessage(msg.chat.id, "Привет. Я робот компании Denisca28. Я создан для того что пользователи могли оставить отзыв и оценить продукт по 10 балиной системе. Но не пробуте задать вопрос здесь, так как на него никто не ответит). Вы уже можете оставить отзыв и если хотите написать что можно улучшить в каком либо продукте). Удачи", option);
+		return 0;	
 	}
-
-	fs.appendFile("./comments.js", msg);
+	sendmail({
+	from: 'no-reply@Denisca28.com'	,
+	to: 'denisca2828@gmail.com',
+	subject: 'Comment Denisca28',
+	html: msg,
+	}, function(err, reply) {});
 	bot.sendMessage(msg.chat.id, "Спасибо за отзыв)");
 });

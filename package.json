@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/Denis2828/jsssss#readme",
   "dependencies": {
-    "node-telegram-bot-api": "^0.40.0"
+    "dialogflow": "^1.2.0",
+    "node-telegram-bot-api": "^0.40.0",
+    "sendmail": "^1.6.1"
   }
 }
