@@ -24,22 +24,6 @@ var commands = [
 ]
 
 bot.on('message', function onMessage(msg) {
-	if(msg.text[0] == '/'){
-		var defis = msg.text.indexOf("-");
-		switch(msg.text.slice(1, defis)){
-			case "Меня зовут":
-				USER_NAME = msg.text.slice(defis+1, msg.text.length);
-			break;
-			case "Команды":
-				var list;
-				for(var q=0;q<commands.length;q++){
-					list+=commands[q].input+"\n";
-				}
-				list+="/Меня зовут-[Ваше имя]\n"
-				send(list);
-			break;
-		}
-	}
 	for(var i = 0;i<commands.length;i++){
 		if(msg.text == commands[i].input){
 			send(commands[i].output);
