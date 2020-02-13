@@ -110,6 +110,8 @@ var data = [
 
 ]; //DataBase;
 
+var out
+
 bot.on('message', function onMessage(msg) {
 	for (var i = 0; i < msg.length; i++) {
 		for (var a = 0; a < data.length; a++) {
