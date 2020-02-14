@@ -1,6 +1,12 @@
 const TOKEN = process.env.TELEGRAM_TOKEN || '1087438094:AAE2F8FdURjBJV9PYCCtsfmnUHEn4ldqlVc';
-const sendmail = require('sendmail')();
 const TelegramBot = require('node-telegram-bot-api');
+var mysql = require("mysql");
+var conn = mysql.createConnection({
+  database: 'serviceapi',
+  host: "www.db4free.net",
+  user: "admin2828",
+  password: "195bcc18"
+});
 const options = {
   webHook: {
     port: process.env.PORT
@@ -37,11 +43,11 @@ bot.on('message', function onMessage(msg) {
 		bot.sendMessage(msg.chat.id, "Привет. Я робот компании Denisca28. Я создан для того что пользователи могли оставить отзыв и оценить продукт по 10 балиной системе. Но не пробуте задать вопрос здесь, так как на него никто не ответит). Вы уже можете оставить отзыв и если хотите написать что можно улучшить в каком либо продукте). Удачи", option);
 		return 0;	
 	}
-	sendmail({
-	from: 'no-reply@Denisca28.com'	,
-	to: 'denisca2828@gmail.com',
-	subject: 'Comment Denisca28',
-	html: msg,
-	}, function(err, reply) {});
-	bot.sendMessage(msg.chat.id, "Спасибо за отзыв)");
+	var sql1 = "INSERT INTO comments (username, text) VALUES ("+msg.from+", "+msg.text+")";
+	conn.connect(function(err){
+		if (err) throw err;
+		conn.query(sql1, function(err, reqult){
+			if(err) throw err;
+		})
+	})	bot.sendMessage(msg.chat.id, "Спасибо за отзыв)");
 });
